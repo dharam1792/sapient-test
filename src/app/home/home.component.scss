@@ -1,0 +1,118 @@
+.cardContainer {
+  padding: 15px;
+  background: #cccccc;
+}
+.cardBox {
+  padding: 15px;
+  background: #fff;
+  border-radius: 8px;
+  font-size: 13px;
+  color: #444444;
+  margin-bottom: 40px;
+  border: 1px solid #eeeeee;
+  min-height: 150px;
+}
+.cardName {
+  color: #294a9b;
+  font-size: 20px;
+}
+
+.main-heading {
+  font-size: 24px;
+}
+.filter {
+  background: #ffffff;
+  border-radius: 8px;
+  border: 1px solid #eeeeee;
+  padding: 15px;
+  .heading {
+    font-size: 18px;
+  }
+  p {
+    text-align: center;
+    font-size: 14px;
+    color: #807c7c;
+    border-bottom: 1px solid #807c7c;
+  }
+}
+.item-image {
+  margin-bottom: 12px;
+  background: #cccccc;
+  img {
+    width: 100%;
+    height: auto;
+  }
+}
+.item-heading {
+  font-size: 12px;
+  font-weight: 600;
+  color: black;
+  ul li {
+    font-size: 12px;
+    font-weight: 400;
+    color: #294a9b;
+  }
+  span,
+  p {
+    font-size: 12px;
+    font-weight: 400;
+    color: #294a9b;
+  }
+}
+.mt-1rem {
+  margin-top: 1rem !important;
+}
+
+
+
+input[type="radio"] {
+  display: none;
+
+  &:not(:disabled)~label {
+      cursor: pointer;
+  }
+
+  &:disabled~label {
+      color       : hsla(150, 5%, 75%, 1);
+      border-color: hsla(150, 5%, 75%, 1);
+      box-shadow  : none;
+      cursor      : pointer;
+  }
+}
+
+label {
+  display   : block;
+  background: #53c553;
+  border    : 2px solid #f1f1f1;
+  padding   : 0.2rem;
+  text-align: center;
+  position  : relative;
+}
+
+input[type="radio"]:checked+label {
+  background: green;
+
+  &::after {
+      position     : absolute;
+      left         : 50%;
+      transform    : translateX(-50%);
+      height       : 50px;
+      width        : 50px;
+      line-height  : 50px;
+      text-align   : center;
+      border-radius: 50%;
+      background   : #53c553;
+  }
+}
+
+.year-count {
+  color      : #ffffff;
+  font-size  : 20px;
+  font-weight: 600;
+  margin: 0;
+}
+
+.reset {
+    float: right;
+    margin-top: -12px;
+}

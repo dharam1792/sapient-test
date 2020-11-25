@@ -1,0 +1,145 @@
+<div class="cardContainer">
+  <div class="row">
+    <div class="col-md-6">
+      <h1 class="main-heading">SpaceX Launch Programs</h1>
+    </div>
+    <div class="col-md-2"></div>
+    <div class="col-md-4">
+      <input
+        type="text"
+        class="form-control"
+        [(ngModel)]="searchItem"
+        placeholder="Search.."
+      />
+    </div>
+  </div>
+  <div class="row mt-1rem">
+    <div class="col-md-3">
+      <div class="filter">
+        <h4 class="heading">
+          Filter
+          <button type="button" class="btn btn-link reset" (click)="reset()">
+            reset
+          </button>
+        </h4>
+        <p>Launch Year</p>
+        <div class="row mt-1rem">
+          <div
+            class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6"
+            *ngFor="let item of years"
+          >
+            <input
+              type="radio"
+              id="control_{{ item }}"
+              name="select"
+              value="{{ item }}"
+              [checked]="item === selectedYear ? true : false"
+              (change)="changeYear(item)"
+            />
+            <label
+              for="control_{{ item }}"
+              [ngStyle]="{
+                background: item === selectedYear ? 'green' : '#53c553'
+              }"
+            >
+              <h1 class="year-count ion-no-margin">{{ item }}</h1>
+            </label>
+          </div>
+        </div>
+
+        <p class="mt-1rem">Successful Launch</p>
+        <div class="row mt-1rem">
+          <div
+            class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6"
+            *ngFor="let item of [true, false]"
+          >
+            <input
+              type="radio"
+              id="control_{{ item }}"
+              name="select"
+              value="{{ item }}"
+              [checked]="item === selectedSuccessfulLaunch ? true : false"
+              (change)="changeSuccessfulLaunch(item)"
+            />
+            <label
+              for="control_{{ item }}"
+              [ngStyle]="{
+                background:
+                  item === selectedSuccessfulLaunch ? 'green' : '#53c553'
+              }"
+            >
+              <h1 class="year-count ion-no-margin">{{ item }}</h1>
+            </label>
+          </div>
+        </div>
+
+        <p class="mt-1rem">Successful Landing</p>
+        <div class="row mt-1rem">
+          <div
+            class="col-6 col-sm-6 col-md-6 col-lg-6 col-xl-6"
+            *ngFor="let item of [true, false]; let i = index"
+          >
+            <input
+              type="radio"
+              id="control_{{ i }}"
+              name="select"
+              value="{{ item }}"
+              [checked]="item === selectedSuccessfulLanding ? true : false"
+              (change)="changeSuccessfulLanding(item)"
+            />
+            <label
+              for="control_{{ i }}"
+              [ngStyle]="{
+                background:
+                  item === selectedSuccessfulLanding ? 'green' : '#53c553'
+              }"
+            >
+              <h1 class="year-count ion-no-margin">{{ item }}</h1>
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-9">
+      <div class="text-center" *ngIf="!loading">Loading...</div>
+      <div class="row" *ngIf="loading">
+        <div
+          class="col-md-4"
+          *ngFor="let item of finalList | findFilter: searchItem"
+        >
+          <div class="cardBox">
+            <div class="item-image">
+              <img [src]="item.links.mission_patch" alt="Image" />
+            </div>
+            <div class="cardName">
+              {{ item.mission_name }} #{{ item.flight_number }}
+            </div>
+            <div class="mt-1 item-heading">
+              Mission Ids:
+              <ul *ngIf="item.mission_id.length; else noId">
+                <li *ngFor="let id of item.mission_id">{{ id }}</li>
+              </ul>
+              <ng-template #noId
+                ><p style="margin-left: 8%">- No Ids</p></ng-template
+              >
+            </div>
+            <div class="mt-1 item-heading">
+              Launch Year: <span>{{ item.launch_year }}</span>
+            </div>
+            <div class="mt-1 item-heading">
+              Successful Launch:
+              <span>{{ item.launch_success }}</span>
+            </div>
+            <div class="mt-1 item-heading">
+              Successful Landing:
+              <span>{{
+                item?.rocket?.first_stage?.cores[0].land_success
+              }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <h4 class="text-center mt-1rem">Developed by: Dharmendra Yaduwanshi</h4>
+</div>
