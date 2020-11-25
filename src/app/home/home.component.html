@@ -13,7 +13,8 @@
       />
     </div>
   </div>
-  <div class="row mt-1rem">
+  <div class="text-center" *ngIf="!loading">Loading...</div>
+  <div class="row mt-1rem" *ngIf="loading">
     <div class="col-md-3">
       <div class="filter">
         <h4 class="heading">
@@ -101,8 +102,7 @@
       </div>
     </div>
     <div class="col-md-9">
-      <div class="text-center" *ngIf="!loading">Loading...</div>
-      <div class="row" *ngIf="loading">
+      <div class="row">
         <div
           class="col-md-4"
           *ngFor="let item of finalList | findFilter: searchItem"
